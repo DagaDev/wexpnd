@@ -1,20 +1,21 @@
 import {
-  Count,
-  CountSchema,
   Filter,
   FilterExcludingWhere,
-  repository,
-  Where,
+  repository
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
+  del, get,
+  getModelSchemaRef, param,
+
+
+  patch, post,
+
+
+
+
   put,
-  del,
-  requestBody,
+
+  requestBody
 } from '@loopback/rest';
 import {Todos} from '../models';
 import {TodosRepository} from '../repositories';
@@ -22,8 +23,8 @@ import {TodosRepository} from '../repositories';
 export class TodosController {
   constructor(
     @repository(TodosRepository)
-    public todosRepository : TodosRepository,
-  ) {}
+    public todosRepository: TodosRepository,
+  ) { }
 
   @post('/todos', {
     responses: {
@@ -49,20 +50,6 @@ export class TodosController {
     return this.todosRepository.create(todos);
   }
 
-  @get('/todos/count', {
-    responses: {
-      '200': {
-        description: 'Todos model count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async count(
-    @param.where(Todos) where?: Where<Todos>,
-  ): Promise<Count> {
-    return this.todosRepository.count(where);
-  }
-
   @get('/todos', {
     responses: {
       '200': {
@@ -82,28 +69,6 @@ export class TodosController {
     @param.filter(Todos) filter?: Filter<Todos>,
   ): Promise<Todos[]> {
     return this.todosRepository.find(filter);
-  }
-
-  @patch('/todos', {
-    responses: {
-      '200': {
-        description: 'Todos PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Todos, {partial: true}),
-        },
-      },
-    })
-    todos: Todos,
-    @param.where(Todos) where?: Where<Todos>,
-  ): Promise<Count> {
-    return this.todosRepository.updateAll(todos, where);
   }
 
   @get('/todos/{id}', {
