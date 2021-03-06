@@ -5,13 +5,12 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import { Todo } from './components/Todo';
 
 function App() {
     return (
         <Router>
-            <div className="container-fluid bg-primary">
-                fddd
-            </div>
+            <Todo />
         </Router>
     );
 }
