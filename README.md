@@ -1,5 +1,5 @@
 # wexpnd
-Repositorio para Fullstack todo exercise app 
+Repositorio para Fullstack todo exercise app  de Waldo Espinoza
 
 
 * Crear base de datos en mysql con el nombre de wexpnd
