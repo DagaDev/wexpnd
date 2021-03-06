@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
-import {findById} from '../controller/index';
+import {useParams, withRouter} from 'react-router-dom'
+import {findById, deleteById, patchById} from '../controller/index';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 const DetailTodo = (props) => {
     const {id} = useParams();
     const [values, setValues] = useState({title: '', description: '', created: null, completed: null});
@@ -17,11 +20,29 @@ const DetailTodo = (props) => {
         }
     }, [])
 
-    const eliminar = () => {
-        
+    const eliminar = async() => {
+        MySwal.fire({
+            icon: 'warning',
+            title: <p>Eliminar</p>,
+            text: 'Desea eliminar este valor?',
+            showDenyButton: true,
+            confirmButtonText: `Cancelar`,
+            denyButtonText: `Aceptar`,
+          }).then(async({isConfirmed}) => {
+                console.log('isConfirmed: ', isConfirmed)
+                if(!isConfirmed){
+                    var res = await deleteById('todos', id)
+                    props.history.goBack();
+                }
+          })
     }
-    const completar = () => {
-        
+    const completar = async() => {
+        var body = {
+            completed: true
+        }
+        var res = await patchById('todos', id, body);
+        console.log(res)
+        props.history.goBack();
     }
     return(
         <>
@@ -64,4 +85,4 @@ const DetailTodo = (props) => {
     )
 }
 
-export default DetailTodo;
+export default withRouter(DetailTodo);

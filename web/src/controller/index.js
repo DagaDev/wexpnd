@@ -40,3 +40,44 @@ export function findById(model, filter, id) {
             });
     });
 }
+
+export function deleteById(model, id) {
+    return new Promise((resolve, reject) => {
+        var init = {
+            method: 'DELETE',
+            headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            },
+        };
+        var url = api + model + '/' + id;
+        fetch(url, init)
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+export function patchById(model, id, body) {
+    return new Promise((resolve, reject) => {
+        var init = {
+            method: 'PATCH',
+            headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        };
+        var url = api + model + '/' + id;
+        fetch(url, init)
+            .then(response => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
