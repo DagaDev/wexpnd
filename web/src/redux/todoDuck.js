@@ -8,6 +8,7 @@ const OBTENER_TODO = 'OBTENER_TODO';
 
 // reducer
 export default function todoReducer (state = todoInicial, {type, payload}){
+    console.log('todoReducer')
     switch (type) {
         case OBTENER_TODO:
             return payload;
@@ -18,9 +19,9 @@ export default function todoReducer (state = todoInicial, {type, payload}){
 
 // actions
 export const obtenerTodoAccion = () => async(dispatch, getState) =>{
+    console.log('obtenerTodoAccion')
     try {
         const res = await axios.get('http://localhost:3001/todos');
-        console.log('res.data: ', res.data)
         dispatch({
             type: OBTENER_TODO,
             payload: res.data
