@@ -19,6 +19,7 @@ const Todo = () => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [buscar, setBuscar] = React.useState('');
     const [closeAlert, setCloseAlert] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -48,8 +49,10 @@ const Todo = () => {
                     <h2>TODO</h2>
                     <div className="d-flex">
                         <TextField
+                            value={buscar}
+                            onChange={(e) => setBuscar(e.target.value)}
                             autoFocus
-                            label="Buscar ..." 
+                            label="Buscar por titulo..." 
                             className="mb-2"
                         />
                         <Button
@@ -63,7 +66,7 @@ const Todo = () => {
                         </Button>
                     </div>
                 </div>
-                <ListaTodo />
+                <ListaTodo buscar={buscar}/>
                 <DialogAddTodo open={open} handleClose={handleClose}/>
                 {
                     closeAlert  == false

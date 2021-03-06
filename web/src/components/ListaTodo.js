@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {connect} from 'react-redux';
-import {obtenerTodoAccion} from '../redux/todoDuck'
+import {obtenerTodoAccion, obtenerFilterAccion} from '../redux/todoDuck'
 import Moment from 'react-moment';
 import 'moment-timezone';
 import {useDispatch, useSelector} from 'react-redux';
@@ -28,12 +28,19 @@ const StyledTableRow = withStyles((theme) => ({
 const rows = [];
 
 const ListaTodo = (props) => {
-
+    var {buscar} = props;
+    
     // 1- FORMA DE LLAMAR EL STORE
     const dispatch = useDispatch();
-    const rows = useSelector(store => store.todo);
+    var rows = useSelector(store => store.todo);
     // 
-
+    useEffect(() => {
+        if(buscar != '' ){
+            dispatch(obtenerFilterAccion(buscar));
+        }else{
+            dispatch(obtenerTodoAccion());
+        }
+    }, [buscar])
     
     useEffect(() => {
         // 1- FORMA DE LLAMAR EL STORE
