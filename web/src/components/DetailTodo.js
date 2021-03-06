@@ -16,6 +16,13 @@ const DetailTodo = (props) => {
             setValues(json)
         }
     }, [])
+
+    const eliminar = () => {
+        
+    }
+    const completar = () => {
+        
+    }
     return(
         <>
             <div className="d-flex mlr ">
@@ -40,11 +47,11 @@ const DetailTodo = (props) => {
                                ?
                                     values.completed == true
                                     ?
-                                        <button className="btn btn-danger mr">ELIMINAR</button>
+                                        <button className="btn btn-danger mr" onClick={() => eliminar()}>ELIMINAR</button>
                                     :
                                         <div>
-                                            <button className="btn btn-danger mr">ELIMINAR</button>
-                                            <button className="btn btn-primary">COMPLETAR</button>
+                                            <button className="btn btn-danger mr" onClick={() => eliminar()}>ELIMINAR</button>
+                                            <button className="btn btn-primary" onClick={() => completar()}>COMPLETAR</button>
                                         </div>
                                :
                                     null
