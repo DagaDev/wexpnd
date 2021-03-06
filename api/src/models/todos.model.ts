@@ -30,7 +30,8 @@ export class Todos extends Entity {
 
   @property({
     type: 'boolean',
-    required: true,
+    required: false,
+    default: false
   })
   completed: boolean;
 
