@@ -13,9 +13,16 @@ import store from './redux/store';
 function App() {
     return (
         <Router>
-            <Provider store={store}>
-                <Todo />
-            </Provider>
+            <Switch>
+                <Provider store={store}>
+                    <Route  path="/" exact >
+                        <Todo />
+                    </Route>
+                    <Route  path="/todo/:id" exact >
+                        lis
+                    </Route>
+                </Provider>
+            </Switch>
         </Router>
     );
 }
