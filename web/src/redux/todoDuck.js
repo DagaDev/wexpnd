@@ -31,7 +31,6 @@ export const obtenerTodoAccion = () => async(dispatch, getState) =>{
 
 export const obtenerFilterAccion = (value) => async(dispatch, getState) =>{
     try {
-        console.log('value: ', value)
         const res = await axios.get('http://localhost:3001/todos?filter=' + JSON.stringify({where: {title: value}}));
         dispatch({
             type: OBTENER_TODO,
