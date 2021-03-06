@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
-import create from '../controller/index';
+import {create} from '../controller/index';
 
 const DialogAddTodo = (props) => {
     const {open, handleClose} = props;
