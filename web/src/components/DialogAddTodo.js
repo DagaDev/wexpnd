@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import Alert from '@material-ui/lab/Alert';
 import create from '../controller/index';
 
 const DialogAddTodo = (props) => {
@@ -14,6 +14,7 @@ const DialogAddTodo = (props) => {
     const [description, setDescription] = React.useState('');
     const [title, setTitle] = React.useState('');
     const [error, setError] = React.useState({title: false, description: false});
+    const [errorFetch, setErrorFetch] = React.useState(false);
     const guardar = async() => {
         if(title == ''){
             setError({...error, title: true})
@@ -26,7 +27,11 @@ const DialogAddTodo = (props) => {
         setError({...error, title: false, description: false})
         var res = await create('todos', {title, description});
         var json = await res.json();
-        console.log('json: ', json);
+        if(json.error){
+            setErrorFetch(true);
+        }else{
+            handleClose(true)
+        }
     }
     return(
         <>
@@ -63,6 +68,20 @@ const DialogAddTodo = (props) => {
                     Aceptar
                 </Button>
             </DialogActions>
+            {
+                errorFetch 
+                ?
+                    <Alert
+                        action={
+                            <Button color="inherit" size="small" onClick={() => setErrorFetch(false)}>
+                                Ok
+                            </Button>
+                        }
+                        severity="error">Ha ocurrido un error, verifique los datos!
+                    </Alert>
+                :
+                    null
+            }
         </Dialog>
         </>
     );

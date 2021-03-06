@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import DialogAddTodo from './DialogAddTodo';
+import Alert from '@material-ui/lab/Alert';
 const Todo = () => {
 
     const useStyles = makeStyles((theme) => ({
@@ -14,12 +15,22 @@ const Todo = () => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [closeAlert, setCloseAlert] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (status = false) => {
+        if(status){
+            setCloseAlert(true);
+            setTimeout(
+                function() {
+                    setCloseAlert(false);
+                },
+                3000
+            );
+        }
         setOpen(false);
     };
 
@@ -41,6 +52,20 @@ const Todo = () => {
                 </div>
                 <ListaTodo />
                 <DialogAddTodo open={open} handleClose={handleClose}/>
+                {
+                    closeAlert  == false
+                    ?
+                        null
+                    :
+                        <Alert
+                            action={
+                                <Button color="inherit" size="small">
+                                    Ok
+                                </Button>
+                            }
+                            severity="success">Datos insertados correctamente!
+                        </Alert>
+                }
             </div>
         </div>
     )
