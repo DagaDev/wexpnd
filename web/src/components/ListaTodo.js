@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,20 +17,19 @@ import Button from '@material-ui/core/Button';
 import {
     withRouter
 } from 'react-router-dom';
-const useStyles = makeStyles({
-    table: {
-    },
-});
 
-function createData(id, description, title, created, completed) {
-    return { id, description, title, created, completed };
-}
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+      height: 50
+    }
+  }))(TableRow);
   
 const rows = [];
 
 const ListaTodo = (props) => {
     // console.log('props: ', props);
-    
+
     // 1- FORMA DE LLAMAR EL STORE
     const dispatch = useDispatch();
     const rows = useSelector(store => store.todo);
@@ -66,7 +65,7 @@ const ListaTodo = (props) => {
                     </TableHead>
                     <TableBody>
                     {rows.map((row, i) => (
-                        <TableRow hover onClick={(e) => edit(row.id)} key={i}>
+                        <StyledTableRow  hover onClick={(e) => edit(row.id)} key={i}>
                             <TableCell component="th" scope="row">
                                 {row.id}
                             </TableCell>
@@ -74,7 +73,7 @@ const ListaTodo = (props) => {
                             <TableCell align="right">{row.description}</TableCell>
                             <TableCell align="right"><Moment format="DD/MM/YYYY">{row.created}</Moment></TableCell>
                             <TableCell align="right">{row.completed ? 'Terminado': 'incompleto'}</TableCell>
-                        </TableRow>
+                        </StyledTableRow>
                     ))}
                     </TableBody>
                 </Table>

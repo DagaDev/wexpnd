@@ -41,7 +41,7 @@ const Todo = () => {
 
     return(
         
-        <div className="d-flex mlr h-100 vh-100">
+        <div className="d-flex mlr h-100">
             <div className="container-fluid card">
                 <div className="d-flex justify-content-between">
                     <h2>TODO</h2>
