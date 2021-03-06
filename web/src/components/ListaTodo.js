@@ -14,6 +14,9 @@ import 'moment-timezone';
 import {useDispatch, useSelector} from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
+import {
+    withRouter
+} from 'react-router-dom';
 const useStyles = makeStyles({
     table: {
     },
@@ -43,6 +46,11 @@ const ListaTodo = (props) => {
         // props.todo();
         // 
     }, [])
+
+    const edit = (id) => {
+        console.log('props: ', props);
+        props.history.push(`/todo/${id}`)
+    }
     return(
         <>
             <TableContainer component={Paper}>
@@ -58,14 +66,14 @@ const ListaTodo = (props) => {
                     </TableHead>
                     <TableBody>
                     {rows.map((row, i) => (
-                        <TableRow key={i}>
-                        <TableCell component="th" scope="row">
-                            {row.id}
-                        </TableCell>
-                        <TableCell align="right">{row.description}</TableCell>
-                        <TableCell align="right">{row.title}</TableCell>
-                        <TableCell align="right"><Moment format="DD/MM/YYYY">{row.created}</Moment></TableCell>
-                        <TableCell align="right">{row.completed ? 'Terminado': 'incompleto'}</TableCell>
+                        <TableRow hover onClick={(e) => edit(row.id)} key={i}>
+                            <TableCell component="th" scope="row">
+                                {row.id}
+                            </TableCell>
+                            <TableCell align="right">{row.description}</TableCell>
+                            <TableCell align="right">{row.title}</TableCell>
+                            <TableCell align="right"><Moment format="DD/MM/YYYY">{row.created}</Moment></TableCell>
+                            <TableCell align="right">{row.completed ? 'Terminado': 'incompleto'}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
@@ -88,6 +96,6 @@ const mapDispatchToProps = (dispatch) => {
 }
     // const wrapper = connect(mapStateToProps);
     // const component = wrapper(ListaTodo);
-export default connect(mapStateToProps, mapDispatchToProps)(ListaTodo);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListaTodo));
 
 // 
