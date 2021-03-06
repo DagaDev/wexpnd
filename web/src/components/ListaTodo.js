@@ -28,12 +28,10 @@ const StyledTableRow = withStyles((theme) => ({
 const rows = [];
 
 const ListaTodo = (props) => {
-    // console.log('props: ', props);
 
     // 1- FORMA DE LLAMAR EL STORE
     const dispatch = useDispatch();
     const rows = useSelector(store => store.todo);
-    console.log('rows: ', rows);
     // 
 
     
@@ -47,7 +45,6 @@ const ListaTodo = (props) => {
     }, [])
 
     const edit = (id) => {
-        console.log('props: ', props);
         props.history.push(`/todo/${id}`)
     }
     return(

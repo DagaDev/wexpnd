@@ -12,7 +12,6 @@ const DetailTodo = (props) => {
     useEffect(async () => {
         var res = await findById('todos',{}, id)
         var json = await res.json();
-        console.log('json: ', json);
         if(json.error){
 
         }else{
@@ -29,7 +28,6 @@ const DetailTodo = (props) => {
             confirmButtonText: `Cancelar`,
             denyButtonText: `Aceptar`,
           }).then(async({isConfirmed}) => {
-                console.log('isConfirmed: ', isConfirmed)
                 if(!isConfirmed){
                     var res = await deleteById('todos', id)
                     props.history.goBack();
@@ -41,7 +39,6 @@ const DetailTodo = (props) => {
             completed: true
         }
         var res = await patchById('todos', id, body);
-        console.log(res)
         props.history.goBack();
     }
     return(
