@@ -6,6 +6,7 @@ import {
     Link
 } from 'react-router-dom';
 import  Todo from './components/Todo';
+import DetailTodo from './components/DetailTodo';
 import { Provider } from 'react-redux';
 
 import store from './redux/store';
@@ -19,7 +20,7 @@ function App() {
                         <Todo />
                     </Route>
                     <Route  path="/todo/:id" exact >
-                        lis
+                        <DetailTodo />
                     </Route>
                 </Provider>
             </Switch>
