@@ -7,6 +7,7 @@ import DialogAddTodo from './DialogAddTodo';
 import Alert from '@material-ui/lab/Alert';
 import {useDispatch, useSelector} from 'react-redux';
 import {obtenerTodoAccion} from '../redux/todoDuck'
+import { TextField } from '@material-ui/core';
 
 const Todo = () => {
 
@@ -45,15 +46,22 @@ const Todo = () => {
             <div className="container-fluid card">
                 <div className="d-flex justify-content-between">
                     <h2>TODO</h2>
-                    <Button
-                        onClick={() => handleClickOpen()}
-                        variant="outlined"
-                        color="primary"
-                        className={classes.button}
-                        startIcon={<AddIcon />}
-                    >
-                        Agregar
-                    </Button>
+                    <div className="d-flex">
+                        <TextField
+                            autoFocus
+                            label="Buscar ..." 
+                            className="mb-2"
+                        />
+                        <Button
+                            onClick={() => handleClickOpen()}
+                            variant="outlined"
+                            color="primary"
+                            className={classes.button}
+                            startIcon={<AddIcon />}
+                        >
+                            Agregar
+                        </Button>
+                    </div>
                 </div>
                 <ListaTodo />
                 <DialogAddTodo open={open} handleClose={handleClose}/>
