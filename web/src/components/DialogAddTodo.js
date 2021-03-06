@@ -31,6 +31,8 @@ const DialogAddTodo = (props) => {
             setErrorFetch(true);
         }else{
             handleClose(true)
+            setDescription('');
+            setTitle('');
         }
     }
     return(

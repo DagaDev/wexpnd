@@ -58,8 +58,8 @@ const ListaTodo = (props) => {
                     <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        <TableCell align="right">Descripción</TableCell>
                         <TableCell align="right">Titulo</TableCell>
+                        <TableCell align="right">Descripción</TableCell>
                         <TableCell align="right">Fecha de creacion</TableCell>
                         <TableCell align="right">Terminado</TableCell>
                     </TableRow>
@@ -70,8 +70,8 @@ const ListaTodo = (props) => {
                             <TableCell component="th" scope="row">
                                 {row.id}
                             </TableCell>
-                            <TableCell align="right">{row.description}</TableCell>
                             <TableCell align="right">{row.title}</TableCell>
+                            <TableCell align="right">{row.description}</TableCell>
                             <TableCell align="right"><Moment format="DD/MM/YYYY">{row.created}</Moment></TableCell>
                             <TableCell align="right">{row.completed ? 'Terminado': 'incompleto'}</TableCell>
                         </TableRow>

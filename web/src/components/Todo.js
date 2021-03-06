@@ -5,6 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import DialogAddTodo from './DialogAddTodo';
 import Alert from '@material-ui/lab/Alert';
+import {useDispatch, useSelector} from 'react-redux';
+import {obtenerTodoAccion} from '../redux/todoDuck'
+
 const Todo = () => {
 
     const useStyles = makeStyles((theme) => ({
@@ -21,8 +24,10 @@ const Todo = () => {
         setOpen(true);
     };
 
+    const dispatch = useDispatch();
     const handleClose = (status = false) => {
-        if(status){
+        if(status == true){
+            dispatch(obtenerTodoAccion());
             setCloseAlert(true);
             setTimeout(
                 function() {
