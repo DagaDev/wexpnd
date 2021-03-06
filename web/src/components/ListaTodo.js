@@ -56,11 +56,11 @@ const ListaTodo = (props) => {
                 <Table  size="small" aria-label="a dense table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell align="right">Titulo</TableCell>
-                        <TableCell align="right">Descripción</TableCell>
-                        <TableCell align="right">Fecha de creacion</TableCell>
-                        <TableCell align="right">Terminado</TableCell>
+                        <TableCell><h5>ID</h5></TableCell>
+                        <TableCell align="right"><h5>Titulo</h5></TableCell>
+                        <TableCell align="right"><h5>Descripción</h5></TableCell>
+                        <TableCell align="right"><h5>Fecha de creación</h5></TableCell>
+                        <TableCell align="right"><h5>Terminado</h5></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
