@@ -12,6 +12,9 @@ const config = {
   database: 'wexpnd'
 };
 
+// create table todos(id int not null auto_increment primary key, description varchar(50) not null, title varchar(50) not null, created DATETIME not null, completed tinyint(1) not null);
+// create database wexpnd;
+
 // Observe application's life cycle to disconnect the datasource when
 // application is stopped. This allows the application to be shut down
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
